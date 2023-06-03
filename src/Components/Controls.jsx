@@ -9,7 +9,7 @@ export default function Controls({ inputValue, setInputValue, data, setData, ele
         setData([]);
         setInputValue([]);
         elementNewTask.focus()
-        elementNewTask.value = ''
+        // elementNewTask.value = ''
     }
     const handleClickAll = () => {
         setInputValue(data)
