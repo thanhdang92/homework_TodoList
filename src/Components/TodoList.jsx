@@ -6,14 +6,13 @@ import TaskInput from "./TaskInput";
 export default function TodoList({ inputValue, setInputValue, data, setData, setElementNewTask, elementNewTask }) {
     const [taskId, setTaskId] = useState()
     const [isEdit, setIsEdit] = useState(true)
-    const test = (id) => {
+    const getTaskId = (id) => {
         setTaskId(id)
     }
     return (
         <>
             <div className="wrapper">
                 <TaskInput
-                    data={data}
                     setData={setData}
                     setInputValue={setInputValue}
                     inputValue={inputValue}
@@ -24,7 +23,6 @@ export default function TodoList({ inputValue, setInputValue, data, setData, set
                 />
                 <Controls
                     setInputValue={setInputValue}
-                    inputValue={inputValue}
                     data={data}
                     setData={setData}
                     elementNewTask={elementNewTask}
@@ -32,12 +30,10 @@ export default function TodoList({ inputValue, setInputValue, data, setData, set
                 <TaskBox
                     inputValue={inputValue}
                     setInputValue={setInputValue}
-                    data={data}
                     setData={setData}
                     elementNewTask={elementNewTask}
-                    test={test}
+                    getTaskId={getTaskId}
                     setIsEdit={setIsEdit}
-                    isEdit={isEdit}
                 />
             </div>
         </>

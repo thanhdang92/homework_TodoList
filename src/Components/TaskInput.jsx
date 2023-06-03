@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import barsIcon from '../assets/hamburger.png'
 import '../styles/todoList.css'
 
@@ -29,7 +29,7 @@ export default function TaskInput({ inputValue, setInputValue, setData, setEleme
                 });
             }
             if (e.target.value === '') {
-                alert('123')
+                alert('Please. Add a new task!')
             }
             setIsEdit(true)
             inputRef.current.value = ''

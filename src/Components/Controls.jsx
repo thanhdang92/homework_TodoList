@@ -1,15 +1,13 @@
 import React from "react";
 import '../styles/todoList.css'
 
-export default function Controls({ inputValue, setInputValue, data, setData, elementNewTask }) {
+export default function Controls({ setInputValue, data, setData, elementNewTask }) {
     let taskCompleted = data.filter(item => item.checked === true);
     let taskPending = data.filter(item => item.checked !== true);
-
     const handleClickClearAll = () => {
         setData([]);
         setInputValue([]);
         elementNewTask.focus()
-        // elementNewTask.value = ''
     }
     const handleClickAll = () => {
         setInputValue(data)

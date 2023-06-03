@@ -1,7 +1,6 @@
 import '../styles/todoList.css'
-import Dropdown from 'react-bootstrap/Dropdown';
 import FlipMove from 'react-flip-move';
-export default function TaskBox({ inputValue, setInputValue, setData, elementNewTask, test, setIsEdit, isEdit }) {
+export default function TaskBox({ inputValue, setInputValue, setData, elementNewTask, getTaskId, setIsEdit }) {
     const handleClickCheckBox = (id) => {
         setInputValue((inputValue) => {
             return inputValue.map((task) => {
@@ -20,30 +19,23 @@ export default function TaskBox({ inputValue, setInputValue, setData, elementNew
             });
         });
     }
-
     const handleClickDelete = (id) => {
 
         let valueDelete = inputValue.filter(item => item.id !== id)
         setInputValue(valueDelete)
         setData(valueDelete)
     }
-
     const handleClickEdit = (id, taskName) => {
         elementNewTask.focus()
         elementNewTask.value = taskName
-        test(id)
+        getTaskId(id)
         setIsEdit(false)
     };
-
     return (
         <>
-            <ul className="task-box">
-                {inputValue.length > 0
-                    ?
-                    <FlipMove
-                        enterAnimation="accordionVertical"
-                        leaveAnimation="accordionVertical"
-                    >
+            <ul className="task-box overflow">
+                {inputValue.length > 0 ?
+                    <FlipMove enterAnimation="accordionVertical" leaveAnimation="accordionVertical">
                         {inputValue && inputValue.length > 0 &&
                             inputValue.map((item, index) => {
                                 return (
@@ -57,28 +49,14 @@ export default function TaskBox({ inputValue, setInputValue, setData, elementNew
                                             />
                                             <p className={item.checked ? "checked" : ""}>{item.taskName}</p>
                                         </label>
-
                                         <div className='list'>
-
-                                            {/* <Dropdown>
-                                                <Dropdown.Toggle style={{ backgroundColor: '#fff', width: "50px", border: "none", color: "black", fontSize: "14px" }} id="dropdown-basic">
-                                                    ...
-                                                </Dropdown.Toggle>
-
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item onClick={() => handleClickEdit(item.id, item.taskName)}>Edit</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => handleClickDelete(item.id)}>Delete</Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown> */}
                                             <button onClick={() => handleClickEdit(item.id, item.taskName)}><i class="fa-solid fa-pen icon"></i>Edit</button>
                                             <button onClick={() => handleClickDelete(item.id)}><i class="fa-solid fa-trash icon"></i>Delete</button>
                                         </div>
                                     </li>
                                 )
                             })}
-                    </FlipMove>
-                    :
-                    <span>You don't have any task here</span>
+                    </FlipMove> : <span>You don't have any task here</span>
                 }
             </ul>
         </>
